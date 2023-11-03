@@ -1,6 +1,6 @@
 <?php
 // chatbot.php
-$openai_api_key = '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';
+$openai_api_key = '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  ';
 
 // Obtén el mensaje del usuario desde la solicitud POST
 $user_message = $_POST['message'];

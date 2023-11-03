@@ -427,7 +427,7 @@ document.getElementById("register-form").addEventListener("submit", function (ev
                   <button class="btn transparent" id="sign-in-btn">INICIAR</button>
                   
               </div>
-              <img src="imagenes\choklitos\inicarchoclo.png" class="image" alt="">
+              <img src="imagenes\choklitos\Choclosesioniniciar.png" class="image" alt="">
           </div>
         </div>
       </div>

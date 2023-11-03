@@ -3,7 +3,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-navbar">
     <div class="container">
         <a class="logo logo__blanco" href="/" title="Senati">
-                  <img src="https://www.senati.edu.pe/sites/all/themes/senati_theme/img/logo.svg" alt="Senati">
+                  <img src="imagenes\img\BioLogo.svg" alt="Senati" class="logo">
+                  <style>
+        /* Aplica estilos a la imagen con la clase "logo" */
+        .logo {
+            width: 35%; /* Define el ancho deseado en píxeles o cualquier otra unidad de medida */
+            /* Puedes ajustar este valor según tus necesidades */
+        }
+    </style>
                 </a>
         <!-- BUSCADOR 
         <input type="checkbox" id="navbar-toggle" class="d-none">
