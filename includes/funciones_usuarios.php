@@ -75,7 +75,7 @@ function actualizarUsuario($id_usuario, $nombre, $apellido_paterno, $apellido_ma
         // Ruta relativa para guardar en la base de datos
         $ruta_relativa = 'imagenes/perfil/' . $nombre_archivo;
         // Ruta absoluta para mover el archivo C:\xampp\htdocs\WEMPO-MASTER\imagenes\perfil
-        $ruta_absoluta = 'C:/xampp/htdocs/WEMPO-MASTER/' . $ruta_relativa;
+        $ruta_absoluta = 'C:/xampp/htdocs/WEMPO-OFICIAL/' . $ruta_relativa;
         // Mover el archivo de imagen a la carpeta de imágenes
         move_uploaded_file($imagen['tmp_name'], $ruta_absoluta);
         $actualizar_imagen = true;

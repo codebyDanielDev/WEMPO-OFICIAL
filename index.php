@@ -224,7 +224,7 @@
     <button id="send-btn" onclick="sendMessage()">Enviar</button>
   </div>
 </div>
-<!--
+
 <style>
 
 
@@ -353,7 +353,7 @@
   background-color: #e2eafc; /* Un azul claro para los mensajes recibidos */
 }
 </style>
--->
+
   <script>
     function toggleChat() {
     var content = document.getElementById('chat-messages');
@@ -442,8 +442,7 @@
     <!-- <a href="https://wa.me/51931998025  " target="_blank" class="whatsapp-link">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Ícono de WhatsApp" class="whatsapp-icon">
 </a>-->
-<st
-yle>
+<style>
     .whatsapp-link {
   display: inline-block;
   position: fixed;
@@ -481,7 +480,7 @@ yle>
         .close-btn:hover {
             background-color: #ddd;
         }
-</st>
+</style>
 <script>
         function closeSection() {
             document.getElementById("section-to-close").style.display = "none";

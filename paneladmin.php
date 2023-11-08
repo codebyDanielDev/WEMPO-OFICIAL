@@ -1,4 +1,5 @@
 <?php
+// FORMATEAR EL FORMat ofan es Shift + Alt + F
 session_start();
 include "db_conectar/conexion.php";
 include "includes/funciones_admin.php";
@@ -12,7 +13,7 @@ $query = "SELECT * FROM administradores WHERE id = '$admin_id'";
 $resultado = mysqli_query($conexion, $query);
 $admin_logged_in = mysqli_fetch_assoc($resultado); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
@@ -21,10 +22,22 @@ $admin_logged_in = mysqli_fetch_assoc($resultado); ?>
   <link rel="stylesheet" href="css/adminindex.css" />
   <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
   <!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .container {
+      margin-top: 20px;
+    }
 
+    .schema-table {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 
 <body>
@@ -116,262 +129,270 @@ $admin_logged_in = mysqli_fetch_assoc($resultado); ?>
     </div>
   </nav>
 
-  <section class="perfiladmin container section section__height agregarproducto" id="perfil">
-    <div class="perfiladmins">
-      <h1>PERFIL ADMIN</h1>
+  <div class="perfiladmins">
+    <h1>PERFIL ADMIN</h1>
+  </div>
+  <div class="contper">
+    <div class="containerPERFIL">
+      <h2>Bienvenido, <?php echo $admin_logged_in['nombre']; ?></h2>
+      <ul>
+        <form action="" method="post">
+          <li><strong>Correo:</strong> <?php echo $admin_logged_in['correo']; ?></li>
+          <li><strong>Nombre:</strong> <?php echo $admin_logged_in['nombre']; ?></li>
+          <li><strong>Contraseña:</strong> ********</li>
+          <button type="submit" name="camcontra" class="btncontra" style="font-size: 1.2rem; padding: 0.5rem; border-radius: 5px; border: none; background-color: #007bff; color: #fff; cursor: pointer;">CAMBIAR CONTRASEÑA</button>
+        </form>
+      </ul>
     </div>
-    <div class="contper">
-      <div class="containerPERFIL">
-        <h2>Bienvenido, <?php echo $admin_logged_in['nombre']; ?></h2>
-        <ul>
-          <form action="" method="post">
-            <li><strong>Correo:</strong> <?php echo $admin_logged_in['correo']; ?></li>
-            <li><strong>Nombre:</strong> <?php echo $admin_logged_in['nombre']; ?></li>
-            <li><strong>Contraseña:</strong> ********</li>
-            <button type="submit" name="camcontra" class="btncontra" style="font-size: 1.2rem; padding: 0.5rem; border-radius: 5px; border: none; background-color: #007bff; color: #fff; cursor: pointer;">CAMBIAR CONTRASEÑA</button>
-          </form>
-        </ul>
-      </div>
 
-    </div>
+  </div>
 
   </section>
 
   <section id="agregar-producto" class="agregarproducto">
-    <div class="agregarcategoria">
-      <h2>Agregar nueva categoría</h2>
-      <form action="procesosAdmin/agrcategorias.php" method="post" id="agrcategoriaform">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
-        <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" name="descripcion"></textarea>
-        <button type="submit" name="agregar_categoria">Agregar categoría</button>
+    <div class="container mt-5">
+      <h2>Ingresar Producto Nuevo</h2>
+      <form action="procesar_producto.php" method="post">
+        <!-- Primera fila -->
+        <div class="row">
+          <label for="proveedor_id" class="col-sm-2 col-form-label">Proveedor:</label>
+          <div class="col-md-6">
+            <select class="form-control select-short" id="proveedor_id" name="proveedor_id" required>
+              <?php echo $proveedoresOptions; ?>
+            </select>
+          </div>
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevoProveedor" id="btnOpenModal">Insertar Nuevo</button>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="presentacion_id" class="col-md-3 col-form-label">Presentación:</label>
+          <div class="col-md-6">
+            <select class="form-control" id="presentacion_id" name="presentacion_id" required>
+              <?php echo $presentacionesOptions; ?>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevaPresentacion" id="btnOpenModalPresentacion">Insertar Presentación</button>
+          </div>
+        </div>
 
-      </form>
-      <center>
-        <button name="borrar_categoria" id="borrar_categoria" style="font-size: 1.2rem; padding: 0.5rem; border-radius: 5px; border: none; background-color: red; color: #fff; cursor: pointer; transition: all 0.2s ease-in-out;">Borrar categoría</button>
-      </center>
+        <div class="form-group row">
+          <label for="unidad_medida_id" class="col-md-3 col-form-label">Unidad de Medida:</label>
+          <div class="col-md-6">
+            <select class="form-control" id="unidad_medida_id" name="unidad_medida_id" required>
+              <?php echo $unidadesMedidaOptions; ?>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevaUnidadMedida" id="btnOpenModalUnidadMedida">Insertar Unidad de Medida</button>
 
-
-      <script>
-        document.getElementById("borrar_categoria").addEventListener("click", function(event) {
-          event.preventDefault();
-
-          // Obtener la lista de categorías
-          fetch("procesosAdmin/obtenercategorias.php")
-            .then((response) => response.json())
-            .then((categorias) => {
-              // Crear una tabla con las categorías y un botón de borrar para cada categoría
-              let tabla = "<table style='border-collapse: collapse; margin: 20px;'><thead><tr style='background-color: #ddd;'><th style='border: 1px solid #ddd; padding: 10px;'>Nombre</th><th style='border: 1px solid #ddd; padding: 10px;'>Descripción</th><th style='border: 1px solid #ddd; padding: 10px;'>Borrar</th></tr></thead><tbody>";
-
-              categorias.forEach((categoria) => {
-                tabla += `<tr style='border: 1px solid #ddd;'><td style='border: 1px solid #ddd; padding: 10px;'>${categoria.nombre}</td><td style='border: 1px solid #ddd; padding: 10px;'>${categoria.descripcion}</td><td style='border: 1px solid #ddd; padding: 10px;'><button style='background-color: red; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;' class="borrarcategorias" data-id="${categoria.id}">Borrar</button></td></tr>`;
-              });
-
-              tabla += "</tbody></table>";
-
-              // Mostrar la tabla en una ventana emergente
-              const ventana = window.open("", "Categorías", "width=600,height=400");
-              ventana.document.write(tabla);
-
-              // Agregar un evento click en los botones de borrar para enviar la solicitud de eliminación
-              ventana.document.querySelectorAll(".borrarcategorias").forEach((boton) => {
-                boton.addEventListener("click", function() {
-                  const id = this.getAttribute("data-id");
-                  const formData = new FormData();
-                  formData.append("id", id);
-
-                  fetch("procesosAdmin/borrarcategorias.php", {
-                      method: "POST",
-                      body: formData,
-                    })
-                    .then((response) => response.json())
-                    .then((data) => {
-                      if (data.status === "success") {
-                        alert(data.message);
-                        // Recargar la página actual para actualizar la lista de categorías
-                        ventana.close();
-                        location.reload();
-                        ventana.location.reload();
-
-                      } else {
-                        alert(data.message);
-                      }
-                    })
-                    .catch((error) => {
-                      console.error("Error:", error);
-                      alert("Error.");
-                    });
-                });
-              });
-            })
-            .catch((error) => {
-              console.error("Error:", error);
-              alert("Error.");
-            });
-        });
-        document.getElementById("agrcategoriaform").addEventListener("submit", function(event) {
-          event.preventDefault();
-          const formData = new FormData(event.target);
-
-          fetch("procesosAdmin/agrcategorias.php", {
-              method: "POST",
-              body: formData,
-            })
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.status === "success") {
-                alert(data.message);
-                // También puedes reiniciar el formulario aquí si es necesario
-                //window.location.href = "perfilUser.php";
-              } else {
-                alert(data.message);
-              }
-            })
-            .catch((error) => {
-              console.error("Error:", error);
-              alert("Error.");
-            });
-        });
-      </script>
-      <h2>Agregar nueva usuario</h2>
-      <p>Aca podrás agregar un nuevo usuario</p>
-      <form action="" method="post">
-        <button type="submit">Agregar</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="contenido">Contenido:</label>
+          <input type="text" class="form-control" id="contenido" name="contenido" required>
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Ingresar Producto</button>
       </form>
     </div>
-    <h2>Agregar producto</h2>
-
-    <form action="procesosAdmin/agregar_producto.php" method="post" enctype="multipart/form-data" id="agregarproductoform">
-      <label for="nombre">Nombre del producto:</label>
-      <input type="text" id="nombre" name="nombre" required>
-
-      <label for="descripcion">Descripción:</label>
-      <textarea id="descripcion" name="descripcion"></textarea>
-
-      <label for="precio">Precio:</label>
-      <input type="text" id="precio" name="precio" required pattern="^\d{1,8}(\.\d{2})?$" title="Por favor, ingrese un precio válido con hasta 8 dígitos enteros y 2 dígitos decimales">
-
-      <label for="modelo">Modelo:</label>
-      <input type="text" id="modelo" name="modelo" required>
-
-      <label for="marca">Marca:</label>
-      <input type="text" id="marca" name="marca" required>
-
-      <label for="stock">Stock:</label>
-      <input type="number" id="stock" name="stock" required>
-
-      <label for="imagen">Imagen:</label>
-      <input type="file" name="imagen">
-
-      <label for="categoria">Categoría:</label>
-      <select name="categoria_id" id="categoria" class="form-control">
-        <?php $categorias = obtenerTodasCategorias(); ?>
-        <?php foreach ($categorias as $categoria) : ?>
-          <option value="<?php echo $categoria['id']; ?>"><?php echo htmlspecialchars($categoria['nombre']); ?></option>
-        <?php endforeach; ?>
-      </select>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
-      <button type="submit" name="agregar_producto">Agregar producto</button>
-      <script>
-        document.getElementById("agregarproductoform").addEventListener("submit", function(event) {
-          event.preventDefault();
-          const formData = new FormData(event.target);
 
-          fetch("procesosAdmin/agregar_producto.php", {
-              method: "POST",
-              body: formData,
-            })
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.status === "success") {
-                alert(data.message);
-                // También puedes reiniciar el formulario aquí si es necesario
-                //window.location.href = "perfilUser.php";
-              } else {
-                alert(data.message);
-              }
-            })
-            .catch((error) => {
-              console.error("Error:", error);
-              alert("Error.");
-            });
-        });
-      </script>
-    </form>
+    <button id="btnOpenModalImagenProducto">Añadir Imagen de Producto</button>
+
+    <!-- La ventana modal para Imágenes de Productos -->
+    <div id="modalImagenProducto" class="modal">
+      <div class="modal-content">
+        <span class="close" data-modal="modalImagenProducto">&times;</span>
+        <form action="insertar_imagen_producto.php" method="post" enctype="multipart/form-data">
+          <label for="producto_id">ID del Producto:</label><br>
+          <input type="number" id="producto_id" name="producto_id" required><br>
+
+          <label for="imagen">Imagen del Producto:</label><br>
+          <input type="file" id="imagen" name="imagen" required><br>
+
+          <label for="descripcion_imagen">Descripción de la Imagen:</label><br>
+          <input type="text" id="descripcion_imagen" name="descripcion_imagen"><br>
+
+          <input type="submit" value="Añadir Imagen">
+        </form>
+      </div>
+    </div>
+
+    <!-- La ventana modal para Productos -->
+    <div id="modalProducto" class="modal">
+      <div class="modal-content">
+        <span class="close" data-modal="modalProducto">&times;</span>
+        <form action="insertar_producto.php" method="post">
+          <label for="proveedor_id">ID del Proveedor:</label><br>
+          <input type="number" id="proveedor_id" name="proveedor_id" required><br>
+
+          <label for="presentacion_id">ID de la Presentación:</label><br>
+          <input type="number" id="presentacion_id" name="presentacion_id" required><br>
+
+          <label for="unidad_medida_id">ID de la Unidad de Medida:</label><br>
+          <input type="number" id="unidad_medida_id" name="unidad_medida_id" required><br>
+
+          <label for="nombre">Nombre del Producto:</label><br>
+          <input type="text" id="nombre" name="nombre" required><br>
+
+          <label for="contenido">Contenido:</label><br>
+          <input type="text" id="contenido" name="contenido" required><br>
+
+          <label for="descripcion">Descripción:</label><br>
+          <textarea id="descripcion" name="descripcion" required></textarea><br>
+
+          <input type="submit" value="Insertar Producto">
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal para Insertar Presentación -->
+    <div id="modalPresentacion" class="modal">
+      <div class="modal-content">
+        <span class="close" data-modal="modalPresentacion">&times;</span>
+        <form action="insertar_presentacion.php" method="post">
+          <label for="tipo">Tipo:</label><br>
+          <input type="text" id="tipo" name="tipo" required><br>
+
+          <label for="descripcion">Descripción:</label><br>
+          <textarea id="descripcion" name="descripcion" required></textarea><br>
+
+          <input type="submit" value="Insertar Presentación">
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal para Insertar Unidad de Medida -->
+    <div id="modalUnidadMedida" class="modal">
+      <div class="modal-content">
+        <span class="close" data-modal="modalUnidadMedida">&times;</span>
+        <form action="insertar_unidad_medida.php" method="post">
+          <label for="unidad">Unidad:</label><br>
+          <input type="text" id="unidad" name="unidad" required><br>
+
+          <label for="descripcionUnidad">Descripción:</label><br>
+          <textarea id="descripcionUnidad" name="descripcion" required></textarea><br>
+
+          <input type="submit" value="Insertar Unidad de Medida">
+        </form>
+      </div>
+    </div>
+
+    <!-- La ventana modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Contenido de la ventana modal -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form action="procesosAdmin/insertar_proveedor.php" method="post">
+          <label for="nombre">Nombre:</label><br>
+          <input type="text" id="nombre" name="nombre" required><br>
+
+          <label for="direccion">Dirección:</label><br>
+          <textarea id="direccion" name="direccion" required></textarea><br>
+
+          <label for="telefono">Teléfono:</label><br>
+          <input type="text" id="telefono" name="telefono" pattern="\d{9}" required><br>
+
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email" required><br>
+
+          <input type="submit" value="Insertar Proveedor">
+        </form>
+      </div>
+
+    </div>
     <style>
-      .agregarproducto {
-        position: relative;
-        top: 0;
+      /* Estilo de la ventana modal (debe estar oculta por defecto con display: none) */
+      .modal {
+        display: none;
+        /* Ocultar la ventana modal por defecto */
+        position: fixed;
+        /* Permanecer en lugar fijo en la pantalla */
+        z-index: 1;
+        /* Situar en la parte superior */
         left: 0;
-        height: 100vh;
+        top: 0;
         width: 100%;
-        background-color: var(--body-color);
-        transition: var(--tran-05);
-        max-width: 85%;
-        margin: 0 auto;
-        padding: 1.7rem;
-        background-color: #fff;
-        border-radius: 15px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Anchura completa */
+        height: 100%;
+        /* Altura completa */
+        overflow: auto;
+        /* Habilitar el desplazamiento si es necesario */
+        background-color: rgb(0, 0, 0);
+        /* Color de fondo con opacidad */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Negro con opacidad */
       }
 
-      .agregarproducto h2 {
-        font-size: 1rem;
-        margin-bottom: 0.1rem;
+      /* Estilo del contenido de la ventana modal */
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        /* 15% desde la parte superior y centrado horizontalmente en la página */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        /* Podrías querer un ancho menor o mayor */
       }
 
-      .agregarproducto form {
-        display: flex;
-        flex-direction: column;
+      /* El botón cerrar (x) */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
       }
 
-      .agregarproducto label {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-      }
-
-      .agregarproducto input[type="text"],
-      .agregarproducto textarea,
-      .agregarproducto select {
-        font-size: 0.8rem;
-        padding: 0.2rem;
-        border-radius: 5px;
-        border: none;
-        margin-bottom: 0.1rem;
-      }
-
-      .agregarproducto input[type="file"] {
-        margin-bottom: 0.1rem;
-      }
-
-      .agregarproducto button[type="submit"] {
-        font-size: 1.rem;
-        padding: 0.1rem;
-        border-radius: 5px;
-        border: none;
-        background-color: #007bff;
-        color: #fff;
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
         cursor: pointer;
       }
-
-      .agregarproducto button[type="submit"]:hover {
-        background-color: #0069d9;
-      }
-
-      .agregarcategoria {
-        width: 40%;
-        float: left;
-      }
-
-      .agregarcategoria {
-        margin-right: 1rem;
-        margin-top: 0rem;
-      }
     </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        // Obtener el modal
+        var modal = document.getElementById('myModal');
 
+        // Obtener el botón que abre el modal
+        var btn = document.getElementById('btnOpenModal');
 
+        // Obtener el elemento <span> que cierra el modal
+        var span = document.getElementsByClassName('close')[0];
+
+        // Cuando el usuario haga clic en el botón, abrir el modal 
+        btn.onclick = function() {
+          modal.style.display = 'block';
+        }
+
+        // Cuando el usuario haga clic en <span> (x), cerrar el modal
+        span.onclick = function() {
+          modal.style.display = 'none';
+        }
+
+        // Cuando el usuario haga clic en cualquier lugar fuera del modal, cerrarlo
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = 'none';
+          }
+        }
+
+      });
+    </script>
   </section>
 
   <section id="buscarUserProduct" class="buscar">
@@ -479,51 +500,51 @@ $admin_logged_in = mysqli_fetch_assoc($resultado); ?>
 
 
 
-<section id="ver-productos" class="verproductos">
-  <div>
-    <h2>Ver productos o usuarios</h2>
-    <button id="verProductosBtn">Ver productos</button>
-    <button id="verUsuariosBtn">Ver usuarios</button>
-  </div>
-  <div id="resultadosdever">
+  <section id="ver-productos" class="verproductos">
+    <div>
+      <h2>Ver productos o usuarios</h2>
+      <button id="verProductosBtn">Ver productos</button>
+      <button id="verUsuariosBtn">Ver usuarios</button>
+    </div>
+    <div id="resultadosdever">
       <!-- Aquí se mostrarán los productos o usuarios -->
     </div>
-  <script>
-    function cargarProductos() {
-      $.ajax({
-        type: 'GET',
-        url: 'procesosAdmin/verProductos.php',
-        dataType: 'html',
-        encode: true
-      })
-      .done(function(data) {
-        $('#resultadosdever').html(data);
+    <script>
+      function cargarProductos() {
+        $.ajax({
+            type: 'GET',
+            url: 'procesosAdmin/verProductos.php',
+            dataType: 'html',
+            encode: true
+          })
+          .done(function(data) {
+            $('#resultadosdever').html(data);
+          });
+      }
+
+      $('#verProductosBtn').click(function(event) {
+        event.preventDefault();
+        cargarProductos();
       });
-    }
 
-    $('#verProductosBtn').click(function(event) {
-      event.preventDefault();
-      cargarProductos();
-    });
+      function cargarUsuarios() {
+        $.ajax({
+            type: 'GET',
+            url: 'procesosAdmin/verUsuarios.php',
+            dataType: 'html',
+            encode: true
+          })
+          .done(function(data) {
+            $('#resultadosdever').html(data);
+          });
+      }
 
-    function cargarUsuarios() {
-      $.ajax({
-        type: 'GET',
-        url: 'procesosAdmin/verUsuarios.php',
-        dataType: 'html',
-        encode: true
-      })
-      .done(function(data) {
-        $('#resultadosdever').html(data);
+      $('#verUsuariosBtn').click(function(event) {
+        event.preventDefault();
+        cargarUsuarios();
       });
-    }
-
-    $('#verUsuariosBtn').click(function(event) {
-      event.preventDefault();
-      cargarUsuarios();
-    });
-  </script>
-</section>
+    </script>
+  </section>
 
 
 
