@@ -72,61 +72,89 @@
                             <a href="#" class="button button--gray button--small">
                                 Mas informacion
                             </a>
+                            <div class="d-flex justify-content-start mb-4">
+              <a class="button home__button" href="pythonphp.php" target="_self" rel="noopener">INICIAR</a>
+            </div>
 
-                            <button class="button home__button">PROBAR</button>
                         </div>
                     </div>
                 </div>
             </section>
             
             <!--==================== FEATURED ====================-->
+            
+                        <!--==================== STORY ====================-->
+                        <section class="story section container">
+                <div class="story__container grid">
+                    <div class="story__data">
+                        <h2 class="section__title story__section-title">
+                        Clasificación de imágenes
+                        </h2>
+    
+                        <h1 class="story__title">
+                        Identifique y categorice  <br>en un  instante.
+                        </h1>
+    
+                        <p class="story__description">
+                        Utilice reglas específicas y IA capacitada para categorizar y etiquetar imágenes, partes de imágenes y similitudes en imágenes.
+                        </p>
+    
+                        <a href="#" class="button button--small">Lea el folleto </a>
+                    </div>
+
+                    <div class="story__images">
+                        <img src="imagenes\choklitos\choclopizarra.png" alt="" class="story__img">
+                        <div class="story__square"></div>
+                    </div>
+                </div>
+            </section>
             <section class="featured section container" id="featured">
                 <h2 class="section__title">
-                    Featured
+                    RECURSOS
                 </h2>
 
                 <div class="featured__container grid">
                     <article class="featured__card">
-                        <span class="featured__tag">Sale</span>
+                        <span class="featured__tag">COMUNIDAD</span>
 
-                        <img src="assets/img/featured1.png" alt="" class="featured__img">
+                        <img src="imagenes\choklitos\choclocomunidad.png" alt="" class="featured__img">
 
                         <div class="featured__data">
-                            <h3 class="featured__title">Jazzmaster</h3>
-                            <span class="featured__price">$1050</span>
+                            <h3 class="featured__title">NUESTRA COMUNIDA</h3>
+                            <span class="featured__price">FORO</span>
                         </div>
 
-                        <button class="button featured__button">ADD TO CART</button>
+                        <button class="button featured__button">UNASE A COLEGAS Y EXPERTOS</button>
                     </article>
 
                     <article class="featured__card">
-                        <span class="featured__tag">Sale</span>
+                        <span class="featured__tag">ASISTENCIA</span>
 
-                        <img src="assets/img/featured2.png" alt="" class="featured__img">
+                        <img src="imagenes\choklitos\choclosoporte.png" alt="" class="featured__img">
 
                         <div class="featured__data">
-                            <h3 class="featured__title">Ingersoll</h3>
-                            <span class="featured__price">$250</span>
+                            <h3 class="featured__title">ASISTENCIA</h3>
+                            <span class="featured__price">AYUDA</span>
                         </div>
 
-                        <button class="button featured__button">ADD TO CART</button>
+                        <button class="button featured__button">OBTENGA AYUDA CON SU PRODUCTO </button>
                     </article>
 
                     <article class="featured__card">
-                        <span class="featured__tag">Sale</span>
+                        <span class="featured__tag">Contacto</span>
 
-                        <img src="assets/img/featured3.png" alt="" class="featured__img">
+                        <img src="imagenes\choklitos\choclocontacto.png" alt="" class="featured__img">
 
                         <div class="featured__data">
-                            <h3 class="featured__title">Rose gold</h3>
-                            <span class="featured__price">$890</span>
+                            <h3 class="featured__title">PARA CUALQUIER CONSULTA O DUDA</h3>
+                            <span class="featured__price">CONTACTENOS</span>
                         </div>
 
-                        <button class="button featured__button">ADD TO CART</button>
+                        <button class="button featured__button">CONTACTENOS</button>
                     </article>
                 </div>
             </section>
-    <!-- Aquí va el contenido principal de la página -->
+    <!-- Aquí va el contenido principal de la página
     <section id="section1" class="bg-light py-5">
       <div class="container">
         <div class="row align-items-center">
@@ -140,7 +168,7 @@
             </div>
           </div>
           <div class="col-lg-6">
-            <img class="img-fluid" src="imagenes\img\log.png" alt="Análisis de imágenes mediante IA">
+            <img class="img-fluid" src="imagenes\choklitos\choclopizarra.png" alt="Análisis de imágenes mediante IA">
           </div>
         </div>
       </div>
@@ -263,7 +291,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> 
 
     <section id="section9" class="bg-dark py-5">
       <div class="container">
@@ -306,13 +334,13 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
     <div id="chat-container">
       <div id="chat-header" onclick="toggleChat()">
         ChoclitoChat
         <button id="minimize">-</button>
       </div>
-      <div id="chat-messages" style="display:none;">
+      <div id="chat-messages" style="display:none;">  
         <!-- Aquí se agregarán los mensajes del chat -->
         <div id="messages"></div>
       </div>
@@ -559,49 +587,7 @@
 
   <?php include 'incfolinav/footer.php' ?>
 
-  <!-- <a href="https://wa.me/51931998025  " target="_blank" class="whatsapp-link">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Ícono de WhatsApp" class="whatsapp-icon">
-</a>-->
-  <style>
-    .whatsapp-link {
-      display: inline-block;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-
-    .whatsapp-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-    }
-
-    .section-container {
-      position: relative;
-      border: 1px solid #ccc;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 12px;
-      background-color: #f1f1f1;
-      color: #333;
-      border: none;
-      cursor: pointer;
-      padding: 4px 6px;
-      border-radius: 4px;
-    }
-
-    .close-btn:hover {
-      background-color: #ddd;
-    }
-  </style>
+  
   <script>
     function closeSection() {
       document.getElementById("section-to-close").style.display = "none";

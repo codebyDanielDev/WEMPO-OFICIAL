@@ -51,51 +51,80 @@ if ($usuario_autenticado) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IA Diagnóstico de Salud del Maíz</title>
-    <link rel="Shortcut Icon" type="image/x-icon" href="assets/icons/logo.ico" />
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <style>
-        /* Paleta de colores del maíz */
-        :root {
-            --maiz-claro: #FFEB77;
-            --maiz-oscuro: #DAA520;
-            --fondo: #2A2A2A;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEMPO</title>
+  <!--=======================================================================================-->
 
-        body {
-            background-color: var(--fondo);
-            color: var(--maiz-claro);
-        }
+  <!--=============== FAVICON ===============-->
+  <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+  <!--=============== BOXICONS ===============-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <!--=============== SWIPER CSS =============-->
+  <link rel="stylesheet" href="css/swiper-bundle.min.css">
 
-        .container {
-            margin-top: 2rem;
-        }
+  <!--=============== CSS ===============-->
+  <link rel="stylesheet" href="css/NEWstyles.css">
+  <!--=======================================================================================-->
+  <!-- <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css"> -->
+  <link rel="Shortcut Icon" type="image/x-icon" href="assets/icons/logo.ico" />
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
-        .btn-custom {
-            background-color: var(--maiz-oscuro);
-            border: none;
-            color: white;
-        }
+  <script src="js/bootstrap.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-        .btn-custom:hover {
-            background-color: var(--maiz-claro);
-            color: var(--fondo);
-        }
+  <script src="js/jquery.min.js"></script>
+  <!--<script src="js/bootstrap.min.js"></script> -->
+  <!--<script src="js/autohidingnavbar.min.js"></script>-->
+  <script src="js/main.js"></script>
+  <script src="js/carrito.js"></script>
 
-        #resultado {
-            width: 100%;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-    </style>
 </head>
+
 <body>
-<?php include 'incfolinav/navbar.php'?>
+<?php include 'incfolinav/navbarNEW.php'?>
+<section class="home" id="home">
+                <div class="home__container container grid">
+                    <div class="home__img-bg">
+                        <img src="imagenes\choklitos\chocloconlupa.png" alt="" class="home__img">
+                    </div>
+    
+                    <div class="home__social">
+                        <a href="https://www.facebook.com/" target="_blank" class="home__social-link">
+                            CONSEJOS
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="home__social-link">
+                            PLAGAS
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" class="home__social-link">
+                            CALCULADORA
+                        </a>
+                    </div>
+    
+                    <div class="home__data">
+                        <h1 class="home__title">Sane su cultivo<br> IA</h1>
+                        <p class="home__description">
+                        Clasificación y análisis de imágenes
+                        </p>
+                        <!--<span class="home__price">$1245</span>-->
+
+                        <div class="home__btns">
+                        <form id="formUpload" enctype="multipart/form-data" class="my-3">
+                    <div class="mb-3">
+                        <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
+                    </div>
+                    
+                </form>
+                <button type="button" class="button home__button" onclick="subirImagen()">Predecir</button>
+                </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 <!-- Este HTML debería ir en la parte del body de tu documento HTML donde quieres que aparezca la ventana modal -->
 <div class="modal" tabindex="-1" role="dialog" id="loginModal" data-backdrop="static" data-keyboard="false">
@@ -163,24 +192,14 @@ if ($usuario_autenticado) {
 <!-- Incluye los estilos de Bootstrap -->
 
 <!-- Sección de navegación -->
-<section id="section2" class="bg-white">
-    <div class="container">
-        <nav class="nav justify-content-center">
-            <a class="nav-link active" href="#section4">Características</a>
-            <a class="nav-link" href="#section7">Éxito del cliente</a>
-            <a class="nav-link" href="#section9">Recursos</a>
-            <a class="nav-link" href="#section11">Productos relacionados</a>
-            <a class="nav-link" href="#section12">Más información</a>
-        </nav>
-    </div>
-</section>
+
 
 <!-- Sección de descripción -->
 <section id="section3" class="bg-white">
     <div class="container text-center">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h5 class="mb-4">OpenText™ AI Image Analytics le brinda acceso a análisis de imágenes en tiempo real y extremadamente precisos para usos que van desde la optimización del tráfico hasta la seguridad física. Detecte e identifique las clasificaciones de objetos como personas, bicicletas, paquetes, autobuses y automóviles en sus imágenes.</h5>
+                <h5 class="mb-4">Prebio ayuda a los agricultores a diagnosticar y tratar los problemas de sus cultivos, mejorar la productividad y brinda conocimientos agrícolas. Alcance sus objetivos y mejore su experiencia en la agricultura con Prebio</h5>
                 <a class="btn btn-primary mb-2" target="_blank" rel="noopener" href="https://www.microfocus.com/pnx/media/brochure/idol_mmap_brochure.pdf">Leer el folleto</a>
             </div>
         </div>
