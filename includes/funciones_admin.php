@@ -22,6 +22,7 @@ function loginadmin($email, $password) {
       return false;
   }
 }
+
 function agregarCategoria($nombre, $descripcion) {
     include '../db_conectar/conexion.php';
     global $conexion;

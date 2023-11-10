@@ -11,10 +11,10 @@ include "../includes/funciones_admin.php";
 $nombre = $_POST['nombre'];
 $direccion = $_POST['direccion'];
 $telefono = $_POST['telefono'];
-$email = $_POST['email'];
+$email = $_POST['email']; 
 
 // Llamar al procedimiento almacenado
-$stmt = $conexion->prepare("CALL InsertarProveedor(?, ?, ?, ?)");
+$stmt = $conexion->prepare("CALL INSERTAR_PROVEEDOR(?, ?, ?, ?)");
 $stmt->bind_param("ssss", $nombre, $direccion, $telefono, $email);
 
 if ($stmt->execute()) {
