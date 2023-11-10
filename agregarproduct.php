@@ -289,7 +289,29 @@
  
     </form>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector('form').addEventListener('submit', function (e) {
+        e.preventDefault();
 
+        var formData = new FormData(this);
+        fetch('procesosAdmin/insertar_producto.php', {
+            method: 'post',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            // Aquí puedes agregar código para manejar la respuesta, como mostrar un mensaje de éxito
+        })
+        .catch(error => {
+            console.error(error);
+            // Manejar el error aquí
+        });
+    });
+});
+
+</script>
 <div class="container mt-5">
         <h2>Formulario de Productos</h2>
         <form>

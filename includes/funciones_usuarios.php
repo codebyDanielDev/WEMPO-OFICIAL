@@ -33,7 +33,7 @@ function loginUsuario($email, $password) {
         $hashed_password = $usuario['contraseña'];
 
         if (password_verify($password, $hashed_password)) {
-            $_SESSION['id_usuario'] = $usuario['id'];
+            $_SESSION['id_usuario'] = $usuario['ID_usuario'];
             return true;
         } else {
             return false;
@@ -45,7 +45,7 @@ function loginUsuario($email, $password) {
 function obtenerUsuarioPorId($id_usuario) {
     global $conexion;
 
-    $query = "SELECT * FROM usuarios WHERE id = '$id_usuario'";
+    $query = "SELECT * FROM usuarios WHERE ID_usuario = '$id_usuario'";
     $resultado = mysqli_query($conexion, $query);
 
     if (mysqli_num_rows($resultado) > 0) {

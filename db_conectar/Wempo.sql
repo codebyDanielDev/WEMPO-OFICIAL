@@ -133,6 +133,33 @@ CREATE TABLE Productos (
 --
 --  Insertar Productos
 --
+DELIMITER //
+
+CREATE PROCEDURE InsertarProducto(
+    IN _Nombre_producto VARCHAR(255),
+    IN _Descripcion_producto TEXT,
+    IN _Precio DECIMAL(10, 2),
+    IN _ID_proveedor INT,
+    IN _Categoria_producto VARCHAR(255),
+    IN _Existencias INT
+)
+BEGIN
+    -- Verificar si el ID_proveedor existe en la tabla Proveedores
+    DECLARE proveedor_existente INT;
+    SELECT COUNT(*) INTO proveedor_existente 
+    FROM Proveedores 
+    WHERE ID_proveedor = _ID_proveedor;
+
+    IF proveedor_existente = 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El ID del proveedor no existe';
+    END IF;
+
+    -- Insertar el producto en la tabla Productos
+    INSERT INTO Productos (Nombre_producto, Descripcion_producto, Precio, ID_proveedor, Categoria_producto, Existencias)
+    VALUES (_Nombre_producto, _Descripcion_producto, _Precio, _ID_proveedor, _Categoria_producto, _Existencias);
+END //
+
+DELIMITER ;
 
 --
 --  Acá poner el de eliminar proveedores
