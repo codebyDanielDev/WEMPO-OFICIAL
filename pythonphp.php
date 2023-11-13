@@ -51,6 +51,19 @@ if ($usuario_autenticado) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Bootstrap CSS -->
+<link href="path/to/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="path/to/bootstrap.bundle.min.js"></script>
+
+    <!-- CSS de Bootstrap (si aún no lo has incluido) -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- JavaScript y Popper.js de Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WEMPO</title>
@@ -94,17 +107,66 @@ if ($usuario_autenticado) {
                     </div>
     
                     <div class="home__social">
-                        <a href="https://www.facebook.com/" target="_blank" class="home__social-link">
-                            CONSEJOS
-                        </a>
-                        <a href="https://twitter.com/" target="_blank" class="home__social-link">
-                            PLAGAS
-                        </a>
-                        <a href="https://www.instagram.com/" target="_blank" class="home__social-link">
-                            CALCULADORA
-                        </a>
-                    </div>
-    
+    <!-- Botones -->
+    <button type="button" class="btn btn-primary home__social-link" data-bs-toggle="modal" data-bs-target="#modalConsejos">CONSEJOS</button>
+    <button type="button" class="btn btn-primary home__social-link" data-bs-toggle="modal" data-bs-target="#modalPlagas">PLAGAS</button>
+    <button type="button" class="btn btn-primary home__social-link" data-bs-toggle="modal" data-bs-target="#modalCalculadora">CALCULADORA</button>
+</div>
+<!-- Modales -->
+<div class="modal fade" id="modalConsejos" tabindex="-1" aria-labelledby="modalConsejosLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalConsejosLabel">Consejos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Aquí va el contenido de Consejos.
+            </div>
+        </div>
+    </div>
+</div>  
+<div class="modal fade" id="modalPlagas" tabindex="-1" aria-labelledby="modalPlagasLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPlagasLabel">Plagas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Aquí va el contenido sobre Plagas.
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalCalculadora" tabindex="-1" aria-labelledby="modalCalculadoraLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCalculadoraLabel">Calculadora</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Aquí va el contenido de la Calculadora.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelector('.home__social-link[data-bs-target="#modalConsejos"]').addEventListener('click', function() {
+    document.getElementById('modalConsejos').style.display = 'block';
+});
+
+document.querySelector('.home__social-link[data-bs-target="#modalPlagas"]').addEventListener('click', function() {
+    document.getElementById('modalPlagas').style.display = 'block';
+});
+
+document.querySelector('.home__social-link[data-bs-target="#modalCalculadora"]').addEventListener('click', function() {
+    document.getElementById('modalCalculadora').style.display = 'block';
+});
+
+</script>
                     <div class="home__data">
                         <h1 class="home__title">Sane su cultivo<br> IA</h1>
                         <p class="home__description">
