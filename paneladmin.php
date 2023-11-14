@@ -2,14 +2,14 @@
 // FORMATEAR EL FORMat ofan es Shift + Alt + F
 session_start();
 include "db_conectar/conexion.php";
-include "includes/funciones_admin.php";
+
 
 if (!isset($_SESSION['admin_logged_in']) || !$_SESSION['admin_logged_in']) {
   header("Location: loginadmin.php");
   exit;
 }
 $admin_id = $_SESSION['id_usuario'];
-$query = "SELECT * FROM administradores WHERE id = '$admin_id'";
+$query = "SELECT * FROM administradores WHERE ID_administradores = '$admin_id'";
 $resultado = mysqli_query($conexion, $query);
 $admin_logged_in = mysqli_fetch_assoc($resultado); ?>
 <!DOCTYPE html>
@@ -624,5 +624,52 @@ $admin_logged_in = mysqli_fetch_assoc($resultado); ?>
     });
   </script>
 </body>
+<script>
+// Tiempo de inactividad antes de mostrar la advertencia (50 segundos)
+var tiempoAdvertencia = 6000; // 50 segundos
+
+// Tiempo después de la advertencia para cerrar sesión (10 segundos)
+var tiempoCierre = 5000; // 10 segundos
+
+var tiempoInactividad;
+
+function resetearTiempoInactividad() {
+    clearTimeout(tiempoInactividad);
+    document.getElementById('modalAdvertencia').style.display = 'none';
+    tiempoInactividad = setTimeout(mostrarAdvertencia, tiempoAdvertencia);
+}
+
+
+// Mostrar mensaje de advertencia y programar cierre de sesión
+function mostrarAdvertencia() {
+    document.getElementById('modalAdvertencia').style.display = 'block';
+
+    // Cierra la sesión automáticamente después de tiempoCierre
+    tiempoInactividad = setTimeout(cerrarSesion, tiempoCierre);
+}
+
+
+// Función para cerrar la sesión en el servidor
+function cerrarSesion() {
+    // Hacer una solicitud AJAX a un script PHP para cerrar la sesión
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'salir.php', true); // Asegúrate de que la ruta a logout.php es correcta
+    xhr.send();
+
+    // Redirigir a la página de inicio de sesión
+    window.location.href = 'loginAdmin.php'; // Asegúrate de que esta ruta es correcta
+}
+
+// Eventos para resetear el tiempo de inactividad
+window.onload = resetearTiempoInactividad;
+document.onmousemove = resetearTiempoInactividad;
+document.onkeypress = resetearTiempoInactividad;
+</script>
+
+<!-- Ventana Modal -->
+<div id="modalAdvertencia" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:1000; background-color:white; padding:20px; border:1px solid #000;">
+    <p>¿Sigues ahí? Tu sesión se cerrará en 10 segundos si no hay actividad.</p>
+</div>
+
 
 </html>

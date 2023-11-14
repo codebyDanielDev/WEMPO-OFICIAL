@@ -12,6 +12,20 @@ CREATE TABLE administradores (
     Nombre_administradores VARCHAR(50) NOT NULL
 );
 -- insertar datos para la tabla `administradores`
+-- procedimiento para buscar admin 
+DELIMITER $$
+
+CREATE PROCEDURE LoginAdminProcedure(
+    IN adminEmail VARCHAR(50)
+)
+BEGIN
+    SELECT * FROM administradores 
+    WHERE Correo_administradores = adminEmail;
+END$$
+
+DELIMITER ;
+-- x
+
 
 INSERT INTO administradores (
     Correo_administradores, Contraseña_administradores, Nombre_administradores
