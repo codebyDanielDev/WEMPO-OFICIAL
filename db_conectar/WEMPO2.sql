@@ -1,4 +1,5 @@
 -- Crear la base de datos:
+
 drop database DB_WEMPO;
 CREATE DATABASE DB_WEMPO;
 USE DB_WEMPO;
@@ -54,17 +55,6 @@ CREATE TABLE Carrito(
     FOREIGN KEY (ID_CEstado) REFERENCES CarritoEstados(ID_CEstado)
 );
 
-CREATE TABLE Carrito_Detalle(
-    ID_Cdetalle INT AUTO_INCREMENT PRIMARY KEY,
-    ID_carrito INT NOT NULL,
-    ID_producto INT NOT NULL,
-    Cantidad_Cdetalle INT NOT NULL,
-    PrecioVenta_Cdetalle DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (ID_carrito) REFERENCES Carrito(ID_carrito),
-    FOREIGN KEY (ID_producto) REFERENCES Productos(ID_producto)
-
-);
-
 CREATE TABLE CategoriaProductos(
     ID_categoriaProd INT AUTO_INCREMENT PRIMARY KEY,
     Nombre_categoriaProd VARCHAR(100) NOT NULL UNIQUE
@@ -77,6 +67,16 @@ CREATE TABLE Productos(
     Descripcion_producto TEXT,
     PrecioUnitario_producto DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (ID_categoriaProd) REFERENCES CategoriaProductos(ID_categoriaProd)
+);
+CREATE TABLE Carrito_Detalle(
+    ID_detalle INT AUTO_INCREMENT PRIMARY KEY,
+    ID_carrito INT NOT NULL,
+    ID_producto INT NOT NULL,
+    Cantidad_detalle INT NOT NULL,
+    PrecioVenta_Cdetalle DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (ID_carrito) REFERENCES Carrito(ID_carrito),
+    FOREIGN KEY (ID_producto) REFERENCES Productos(ID_producto)
+
 );
 
 CREATE TABLE Proveedores(

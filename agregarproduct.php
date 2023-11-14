@@ -1,4 +1,4 @@
-<?php include 'procesosAdmin\mostrar_proveedores_select.php'; // Incluye el script de PHP aquí 
+<?php //include 'procesosAdmin\mostrar_proveedores_select.php'; // Incluye el script de PHP aquí 
 ?>
 <?php //include 'procesosAdmin\mostrarProveedoresxD.php'; // Incluye el script de PHP aquí 
 ?>
@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Botones con Ventanas Modales en Bootstrap</title>
     <!-- Enlace al CSS de Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://   stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
